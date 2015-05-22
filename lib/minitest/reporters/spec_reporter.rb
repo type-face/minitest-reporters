@@ -30,7 +30,13 @@ module Minitest
         super
         print pad_test(test.name)
         print_colored_status(test)
-        print(" (%.2fs)" % test.time) unless test.time.nil?
+        
+        if test.time.present?
+          print(" (%.2fs)" % test.time)
+        else
+          print("0")
+        end
+        
         puts
         if !test.skipped? && test.failure
           print_info(test.failure)
